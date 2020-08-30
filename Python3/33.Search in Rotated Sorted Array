@@ -1,0 +1,35 @@
+# https://leetcode.com/problems/search-in-rotated-sorted-array/
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        '''
+        # 二分法
+        1.先判断中间节点mid的左边和右边那一边是有序的
+        2.再判断target是否在有序列表内。
+        '''
+        if len(nums)< 1:
+            return -1
+        
+        l = 0
+        r = len(nums) - 1
+        while l < r:
+            m = (r - l) // 2 + l
+            if nums[m] == target:
+                return m
+            # left are ordered
+            if nums[m] > nums[l]:
+                if nums[l] <=target <=nums[m]:
+                    r = m
+                else:
+                    l = m + 1
+            else:
+            # right are ordered
+                if nums[m+1] <=target <=nums[r]:
+                    l = m + 1
+                else:
+                    r = m
+        
+        if nums[l] == target:
+            return l
+        else:
+            return -1
