@@ -32,12 +32,11 @@ class Solution:
         tmp = ListNode(0)
         tmp.next = head
         p1, p2 = tmp, head
-        for i in range(n-1):
+        for i in range(n):
             p2 = p2.next
-        while p2 and p2.next:
+        while p2:
             p1 = p1.next
             p2 = p2.next
-        
-        p1.next = p1.next.next
-        
+
+        p1.next = p1.next.next # remove 操作 
         return tmp.next
